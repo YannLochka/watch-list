@@ -6,6 +6,8 @@
       <p><%= movie.overview %></p>
       <%= image_tag movie.poster_url, height: 200 %>
       <p><%= movie.rating %></p>
+      <% bookmark = movie.bookmarks.find_by(list: @list)  %>
+      <%= link_to("Delete", bookmark_path(bookmark), method: :delete ) %>
     </li>
     <% end %>
   </ul>
