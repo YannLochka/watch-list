@@ -1,19 +1,27 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://source.unsplash.com/random);">
-  <div class="container">
+<div class="banner banner-index">
     <h1>Save any kind of movies 🍿</h1>
     <p>This is the best app 🤓</p>
     <a class="btn btn-primary" href="#">Start</a>
-  </div>
 </div>
+  <div class="container">
 <ul>
-<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+<div class="cards">
   <% @lists.each do |list| %>
-    <li>
-      <%= link_to(list.name, list_path(list)) %>
+    <% if list.photo.attached? %>
+      <li class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= cl_image_path list.photo.key, height: 300, width: 400, crop: :fill %>)">
+    <% else %>
+      <li class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= cl_image_path "popcorn", height: 300, width: 400, crop: :fill %>)">
+    <% end %>
+        <p><%= link_to(list.name, list_path(list)) %></p>
     </li>
   <% end %>
-</div>
+  </div>
 </ul>
 
+
+</div>
+
 <br>
-<%= link_to("Create a new list 🪄", new_list_path) %>
+<div class="button">
+<%= link_to("Create a new list 🪄", new_list_path, class: "btn btn-dark") %>
+</div>
